@@ -7,10 +7,10 @@ name = "yourpkg"
 version = "0.1.0"
 description = "Merging two tabular files and exporting to Excel"
 requires-python = ">=3.10"
-dependencies = [
-  "pandas==2.2.2",
-  "openpyxl>=3.1,<4"
-]
+dependencies = ["pandas==2.2.2", "openpyxl>=3.1,<4"]
+
+[tool.setuptools.packages.find]
+include = ["yourpkg*"]
 
 [project.urls]
 homepage = "https://github.com/mctwork2/tpok003"
