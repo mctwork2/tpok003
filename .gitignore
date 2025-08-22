@@ -1,8 +1,0 @@
-__pycache__/
-.ipynb_checkpoints/
-.venv/
-.env
-dist/
-build/
-*.egg-info
-.DS_Store
