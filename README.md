@@ -1,30 +1,18 @@
-# Colab Merge Project
+# tpok003 — GitHub Runner (одна кнопка, защита результата)
 
-This repo shows a minimal layout for a Colab-friendly tool that merges two tabular files (CSV/XLSX) using a small Python package (`yourpkg`).
+Этот ноутбук тянет **mctwork2/tpok003** с GitHub (через токен), ставит зависимости и запускает интерфейс.
+Добавлено: пароль для шифрования результата (AES‑ZIP) и авто‑очистка загруженных файлов.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mctwork2/tpok003/blob/REF/notebooks/colab_merge_tool.ipynb)
+## Как пользоваться в Colab
+1. Откройте `notebooks/colab_git_runner.ipynb`.
+2. Нажмите **▶ Запустить (GitHub)** — введите **GitHub token (read-only)**.
+3. В открывшемся UI загрузите два файла, укажите дату.
+4. (Опционально) Укажите **Пароль для ZIP**. Если поле непустое, результат будет выдан как **.zip**, зашифрованный AES‑256.
+5. Оставьте чекбокс **«Удалить входные файлы после обработки»** включённым (по умолчанию).
 
-## Quick start (locally)
+## Как открыть зашифрованный ZIP
+- На Windows: встроенный проводник *не всегда* поддерживает AES‑ZIP. Надёжные варианты: **7‑Zip**, **WinRAR**.
+- На macOS: встроенный Архиватор может не открыть AES‑ZIP. Используйте **Keka**, **The Unarchiver**.
+- После распаковки введите свой пароль и откройте получившийся `.xlsx` в Excel.
 
-```bash
-pip install -U pip
-pip install -e .
-python -c "from yourpkg.merge import merge_two_files; print(merge_two_files('examples/example_first.csv','examples/example_second.csv', mode='join', how='inner', left_key='id', right_key='id', out_path='merged.xlsx'))"
-```
-
-## What’s inside
-
-- `pyproject.toml` — project metadata and dependencies
-- `yourpkg/` — importable package with all logic in functions
-- `notebooks/colab_merge_tool.ipynb` — a Colab form/demo that calls functions from the package
-- `examples/` — small sample files (plus your uploaded files copied here)
-- `scripts/` — place for standalone scripts (renamed to `nbutest.py`)
-
-## After you push to GitHub
-
-1. Replace `mctwork2/tpok003/REF` in this README and in the notebook’s install cell.
-2. Click the **Open in Colab** badge to run the demo.
-
-
-## Web UI в Colab
-В ноутбуке есть блок **Gradio UI**: загрузите два файла (CSV/XLSX), введите дату (опционально) и получите скачиваемый результат `merged_result_YYYY-MM-DD.xlsx`. По умолчанию объединение идёт по колонке `id` (inner-join).
+> Пароль нигде не сохраняется. Он используется только на момент упаковки и не логируется.
